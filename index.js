@@ -37,6 +37,7 @@ function capitalizeNames() {
   // DO NOT MUTATE THE ORIGINAL ARRAY IN YOU LOGIC
   return items.map((item) => ({
     ...item,
+    d,
   }));
 }
 
