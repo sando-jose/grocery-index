@@ -16,7 +16,7 @@ const cart = [];
 function logItemNames() {
   //TODO: use the .forEach() method to log out the name of each item
   items.forEach((item) => {
-    console.log(item.name);
+    console.log("ITEM NAME", item.name);
   });
 }
 
@@ -24,9 +24,12 @@ function logItemNames() {
  * @param {number} id
  * @returns {{id: number, name: string, price: number, category: string, inventory: number}} item
  */
-function findItemById(id) {
+function findItemById(userInputId) {
   // TODO: Use the .find() method to return the item who's id matches the passed in id
-  return items.find((item) => item.id === id);
+  const foundItem = items.find((item) => {
+    return userInputId === item.id;
+  });
+  return foundItem;
 }
 
 /**
@@ -35,12 +38,17 @@ function findItemById(id) {
 function capitalizeNames() {
   // TODO:  Use the .map() and possibly .slice() methods and return a new items array with the item names capitalized
   // DO NOT MUTATE THE ORIGINAL ARRAY IN YOU LOGIC
-  return items.map((item) => ({
-    ...item,
-    d,
-  }));
-}
+  // return items.map((item) => ({
+  //   ...item,
+  // }));
+  //}
+  const capitalizedItemNames = items.map((item) => {
+    item.name = item.name.charAt(0).toUpperCase() + item.name.slice(1);
+    return item.name;
+  });
 
+  return capitalizedItemNames;
+}
 /**
  * @returns {number} the sum of all inventory items
  */
@@ -48,7 +56,6 @@ function capitalizeNames() {
 function calculateTotalInventory() {
   // TODO Use the .reduce() method to return the total number of items in inventory
   return items.reduce((total, item) => total + item.inventory, 0);
-  let calculateTotalInventory = calculateTotalInventory(items);
 }
 
 /**
@@ -56,6 +63,7 @@ function calculateTotalInventory() {
  */
 function calculateAllInventoryPrice() {
   // TODO Use the .reduce() method to return the total price of all the items in inventory
+  return items.reduce((total, item) => total + item.price, 0);
 }
 
 /**
@@ -64,6 +72,7 @@ function calculateAllInventoryPrice() {
  */
 function getItemPriceByName(name) {
   // TODO: Use your knowledge of objects and arrays to get the price of the item passed in
+  items.find((item) => item === name);
 }
 
 /**
